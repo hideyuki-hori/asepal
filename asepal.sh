@@ -126,3 +126,5 @@ NCHUNKS=3
 
 mv "$TMP/out.ase" "$OUT"
 echo "$OUT ($N colors)"
+
+open $OUT
