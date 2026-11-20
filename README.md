@@ -23,7 +23,7 @@ LibreSprite のパレットに色を1つずつコピペする手間をなくす�
 ## インストール
 
 ```sh
-chmod +x ~/h/asepal/asepal.sh
+chmod +x ~/h/asepal
 ```
 
 .zshrc に `export PATH="$HOME/h/asepal:$PATH"` を追加する。
@@ -31,16 +31,16 @@ chmod +x ~/h/asepal/asepal.sh
 ## 使い方
 
 ```sh
-asepal -c hex1 hex2 ...
+asepal hex1 hex2 ...
 ```
 
-- hex は 6 桁（`RRGGBB`）。先頭の `#` はあってもなくても構いません
+- hex は 6 桁（`RRGGBB`）。`#` は付けません（付けるとエラー）
 - 色は最大 256 色まで
 
 例:
 
 ```sh
-asepal -c 985E30 A58035 D2AB62 DACB70 F3E2A2
+asepal 985E30 A58035 D2AB62 DACB70 F3E2A2
 # => /Users/you/dot-e-kyoshitsu/Sprite-0002.ase (5 colors)
 ```
 

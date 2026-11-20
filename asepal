@@ -1,6 +1,6 @@
 #!/bin/bash
 # asepal - ~/dot-e-kyoshitsu に次番号の Sprite-NNNN.ase を作り、パレットを書き込む
-# 使い方: asepal -c 985E30 A58035 ...   （# は付いていても無くても可）
+# 使い方: asepal 985E30 A58035 ...   （6桁hex、# は付けない）
 # 仕様: 32x32 / RGBA / 透明背景 / レイヤー1枚（空）/ 1フレーム
 set -eu
 
@@ -8,19 +8,16 @@ DIR="$HOME/dot-e-kyoshitsu"
 W=32
 H=32
 
-usage() { echo "usage: asepal -c hex1 hex2 ..." >&2; exit 1; }
+usage() { echo "usage: asepal hex1 hex2 ...  (RRGGBB, # なし)" >&2; exit 1; }
 
-[ "${1:-}" = "-c" ] || usage
-shift
 [ $# -ge 1 ] || usage
 [ $# -le 256 ] || { echo "error: 色は256色まで" >&2; exit 1; }
 
 # 色の検証
 COLORS=()
 for c in "$@"; do
-  h="${c#\#}"
-  case "$h" in
-    [0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f]) COLORS+=("$h") ;;
+  case "$c" in
+    [0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f]) COLORS+=("$c") ;;
     *) echo "error: 不正なhex: $c" >&2; exit 1 ;;
   esac
 done
